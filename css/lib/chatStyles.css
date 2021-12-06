@@ -1,0 +1,148 @@
+:root {
+  --chat-color-chatpartner: #778699;
+  --chat-color-error: #dc385c;
+  --chat-color-self: #4B79E0;
+  --chat-color-info: #EBEFF5;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.message-container.disconnected::before {
+  content: "Du bist nicht mehr mit dem Chat verbunden";
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--chat-color-error);
+  color: #fff;
+  padding: 0.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.message-container .message {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6em 1.5em;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-bottom: 1.8rem;
+  color: #fff;
+  opacity: 0;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.message-container .message::after{
+  content: attr(data-time);
+  position: absolute;
+  bottom: -1.3rem;
+  font-size: 0.8em;
+  color: #778699;
+}
+
+.message-container .message p {
+  margin: 0;
+}
+
+.message-container .message .user-img {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.5em;
+}
+
+.message-container [data-role="info"] {
+  text-align: center;
+  background-color: var(--chat-color-info);
+  color: #778699;
+}
+.message-container [data-role="info"]::after {
+  content: none;
+}
+
+.message-container [data-role="chatpartner"] {
+  margin-right: 2rem;
+  width: fit-content;
+  border-radius: 0.3rem 0.3rem 0.3rem 0;
+  max-width: calc(100% - 2rem);
+  background-color: var(--chat-color-chatpartner);
+}
+
+.message-container [data-role="chatpartner"]::after {
+  left: 0;
+}
+
+.message-container [data-role="self"] {
+  margin-left: auto;
+  margin-right: 0;
+  width: fit-content;
+  border-radius: 0.3rem 0.3rem 0 0.3rem;
+  max-width: calc(100% - 2rem);
+  background-color: var(--chat-color-self);
+}
+
+.message-container [data-role="self"]::after {
+  right: 0;
+}
+
+.message-container [data-role="self"] p, .message-container [data-role="chatpartner"] p {
+  color: #fff;
+}
+
+.chat-container {
+  position: relative;
+  padding: 1.5rem;
+  min-height: 100%;
+}
+
+.chat-container .hide {
+  display: none;
+}
+
+.send-container {
+  position: fixed;
+  background-color: white;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.send-container .message-input {
+  flex-grow: 1;
+  max-height: 1.5rem;
+}
+
+.login-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.login-container .inner {
+  display: flex;
+  flex-direction: column;
+  height: 5rem;
+  width: 80%;
+  max-width: 20rem;
+  min-width: 10rem;
+}
+
+.login-container .inner .login-input, .login-container .inner .login-password {
+  margin-bottom: 1em;
+  padding: 0.3em 1em;
+}
